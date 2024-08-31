@@ -7,7 +7,7 @@ import styles from "./QuizProgress.module.css";
 
 function QuizProgress() {
   return (
-    <Section className="question-parent my-4 d-nones">
+    <Section className="question-parent my-4 d-none">
       <div className={`container ${styles["question-container"]} p-3 rounded`}>
         {/* info */}
         <QuizInfo />
