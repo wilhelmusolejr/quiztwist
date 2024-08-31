@@ -1,0 +1,17 @@
+/* Progress Bar Styling */
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar::-webkit-progress-bar {
+  background-color: rgba(243, 243, 243, 0.1);
+  border-radius: 5px;
+}
+
+.progress-bar::-webkit-progress-value {
+  background-color: #4caf50;
+  border-radius: 5px;
+}

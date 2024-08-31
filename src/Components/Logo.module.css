@@ -1,0 +1,7 @@
+/* ------------------- */
+/* LOGO */
+.logo {
+  font-family: "Oswald", sans-serif;
+  font-size: 50px;
+  color: var(--clr-white);
+}

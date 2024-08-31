@@ -1,7 +1,7 @@
-function button({ children }) {
+function button({ className = "", children }) {
   return (
     <>
-      <button className="btn btn-primary mt-4">{children}</button>
+      <button className={`btn ${className}`}>{children}</button>
     </>
   );
 }
