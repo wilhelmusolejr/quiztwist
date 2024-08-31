@@ -7,8 +7,6 @@ import Section from "./Section";
 import styles from "./QuizFinish.module.css";
 
 function QuizFinish({ quizInfo }) {
-  console.log(quizInfo);
-
   const percentage = (quizInfo.correct_answers / quizInfo.num_questions) * 100;
 
   return (

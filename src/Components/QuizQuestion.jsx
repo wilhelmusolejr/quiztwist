@@ -11,24 +11,38 @@ function QuizQuestion({ question, dispatch, user_answer }) {
 
         {/* options */}
         <div className="quiz-option text-light">
-          {question.answers.map((option, index) => (
-            <button
-              key={index}
-              className={`btn btn-option mt-3 ${
-                hasAnswered ? "disabled" : ""
-              } `}
-              onClick={() => {
-                dispatch({
-                  type: "ANSWER_QUESTION",
-                  payload: {
-                    user_answer: index,
-                  },
-                });
-              }}
-            >
-              {option}
-            </button>
-          ))}
+          {question.answers.map((option, index) => {
+            // Determine the class based on whether the answer is correct, incorrect, or unanswered
+            let btnClass = "btn btn-option mt-3";
+
+            if (hasAnswered) {
+              if (index === user_answer) {
+                btnClass +=
+                  index === question.correctAnswer
+                    ? " btn-correct"
+                    : " btn-incorrect";
+              } else if (index === question.correctAnswer) {
+                btnClass += " btn-correct";
+              }
+            }
+
+            return (
+              <button
+                key={index}
+                className={`${btnClass} ${hasAnswered ? "disabled" : ""}`}
+                onClick={() => {
+                  dispatch({
+                    type: "ANSWER_QUESTION",
+                    payload: {
+                      user_answer: index,
+                    },
+                  });
+                }}
+              >
+                {option}
+              </button>
+            );
+          })}
         </div>
       </div>
     </>
