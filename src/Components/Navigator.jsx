@@ -5,7 +5,7 @@ import "./Navigator.bundle.css";
 
 const Navigator = () => {
   return (
-    <nav className="container position-fixed py-3">
+    <nav className="container py-3">
       <div className={`container nav-parent`}>
         <div className="logo">
           <a href="#" className="text-decoration-none text-light">

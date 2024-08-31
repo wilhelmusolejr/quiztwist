@@ -13,6 +13,8 @@ p {
 
 :root {
   --clr-main: #312d94;
+  --clr-white: white;
+  --clr-light-white: #f4f4f4;
 }
 
 /* ------------------- */
@@ -25,6 +27,10 @@ p {
   color: var(--clr-main);
 }
 
+.text-light {
+  color: var(--clr-white) !important;
+}
+
 /* ------------------- */
 /* ------------------- */
 /* ------------------- */
@@ -35,13 +41,21 @@ p {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.btn-option {
+  font-weight: initial !important;
+  color: var(--clr-white) !important;
+  background: rgba(94, 94, 94, 0.5);
+  width: 100%;
+  max-width: 300px;
+}
 /* ------------------- */
 /* ------------------- */
 /* ------------------- */
 
 body {
-  color: white;
+  color: var(--clr-light-white);
   font-family: "Poppins", sans-serif;
+  background: radial-gradient(#312d94, #252260);
 }
 
 a {
@@ -57,14 +71,38 @@ svg {
 .logo {
   font-family: "Oswald", sans-serif;
   font-size: 50px;
-  color: white;
+  color: var(--clr-white);
 }
 
 /* ------------------- */
 /* HEADER */
 header {
-  min-height: 100vh;
-  background: radial-gradient(#312d94, #252260);
+  min-height: 80vh;
 }
 
 /*  */
+/* Progress Bar Styling */
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+  background-color: rgba(243, 243, 243, 0.1);
+  border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+  background-color: #4caf50;
+  border-radius: 5px;
+}
+
+.question-parent {
+}
+
+.question-container {
+  min-height: 50vh;
+  background-color: rgba(3, 10, 36, 0.9);
+}
