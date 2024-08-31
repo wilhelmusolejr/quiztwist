@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 
-function QuizQuestion({}) {
+function QuizQuestion({ question, dispatch, user_answer }) {
+  let hasAnswered = user_answer != null;
+
   return (
     <>
       <div className="quiz text-center py-5">
@@ -12,8 +14,17 @@ function QuizQuestion({}) {
           {question.answers.map((option, index) => (
             <button
               key={index}
-              className={`btn btn-option mt-3`}
-              onClick={() => {}}
+              className={`btn btn-option mt-3 ${
+                hasAnswered ? "disabled" : ""
+              } `}
+              onClick={() => {
+                dispatch({
+                  type: "ANSWER_QUESTION",
+                  payload: {
+                    user_answer: index,
+                  },
+                });
+              }}
             >
               {option}
             </button>
@@ -24,6 +35,10 @@ function QuizQuestion({}) {
   );
 }
 
-QuizQuestion.propTypes = {};
+QuizQuestion.propTypes = {
+  question: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  user_answer: PropTypes.number,
+};
 
 export default QuizQuestion;

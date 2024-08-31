@@ -7,23 +7,32 @@ import Section from "./Section";
 
 import styles from "./QuizProgress.module.css";
 
-function QuizProgress({}) {
+function QuizProgress({ quizInfo, question, dispatch, user_answer }) {
   return (
     <Section className="question-parent my-4">
       <div className={`container ${styles["question-container"]} p-3 rounded`}>
         {/* info */}
-        <QuizInfo />
+        <QuizInfo quizInfo={quizInfo} />
 
         {/* question */}
-        <QuizQuestion />
+        <QuizQuestion
+          question={question}
+          dispatch={dispatch}
+          user_answer={user_answer}
+        />
 
         {/* footer */}
-        <QuizFooter />
+        <QuizFooter dispatch={dispatch} quizInfo={quizInfo} />
       </div>
     </Section>
   );
 }
 
-QuizProgress.propTypes = {};
+QuizProgress.propTypes = {
+  quizInfo: PropTypes.object.isRequired,
+  question: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  user_answer: PropTypes.number,
+};
 
 export default QuizProgress;

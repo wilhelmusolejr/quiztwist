@@ -2,26 +2,26 @@ import PropTypes from "prop-types";
 
 import styles from "./QuizInfo.module.css";
 
-function QuizInfo({}) {
+function QuizInfo({ quizInfo }) {
   return (
     <>
       <div className="quiz-info">
         {/* progress */}
         <progress
-          value={index}
-          max={numberOfQuestions}
+          value={quizInfo.current_index + 1}
+          max={quizInfo.num_questions}
           className={`${styles["progress-bar"]}`}
         ></progress>
         {/* info */}
         <div className="d-flex justify-content-between mt-2">
           <div className="">
             <span>
-              Question {index} / {numberOfQuestions}
+              Question {quizInfo.current_index + 1} / {quizInfo.num_questions}
             </span>
           </div>
           <div className="">
             <span>
-              {points} / {total_points} points
+              {quizInfo.current_points} / {quizInfo.total_points} points
             </span>
           </div>
         </div>
@@ -30,6 +30,8 @@ function QuizInfo({}) {
   );
 }
 
-QuizInfo.propTypes = {};
+QuizInfo.propTypes = {
+  quizInfo: PropTypes.object.isRequired,
+};
 
 export default QuizInfo;

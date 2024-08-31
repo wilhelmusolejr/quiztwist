@@ -11,7 +11,11 @@ let initialState = {
   points: 0,
   currentQuestionIndex: 0,
   answer: null,
-  status: "loading", // loading, ready, progress, finished
+  correct_answers: 0,
+
+  // loading, ready, onprogress, finished
+  status: "loading",
+
   total_points: 0,
 };
 
@@ -27,6 +31,25 @@ function reducer(state, action) {
         }, 0),
       };
 
+    case "START_QUIZ":
+      return { ...state, status: "progress" };
+
+    case "ANSWER_QUESTION":
+      return { ...state, answer: action.payload.user_answer };
+
+    case "NEXT_QUESTION":
+      return {
+        ...state,
+        answer: null,
+        currentQuestionIndex: state.currentQuestionIndex + 1,
+      };
+
+    case "FINISH_QUIZ":
+      return {
+        ...state,
+        status: "finished",
+      };
+
     default:
       throw new Error("Unknown action type");
   }
@@ -34,6 +57,18 @@ function reducer(state, action) {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  let { status, questions, currentQuestionIndex } = state;
+
+  let quizInfo = {
+    num_questions: questions.length,
+    current_index: currentQuestionIndex,
+    current_points: state.points,
+    total_points: state.total_points,
+    correct_answers: state.correct_answers,
+  };
+
+  let user_answer = state.answer;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,13 +89,20 @@ function App() {
 
       <header>
         {/* START */}
-        {status != "progress" && <QuizStart />}
+        {status === "ready" && <QuizStart dispatch={dispatch} />}
 
         {/* Quiz */}
-        {status === "progress" && <QuizProgress />}
+        {status === "progress" && (
+          <QuizProgress
+            quizInfo={quizInfo}
+            question={questions[currentQuestionIndex]}
+            dispatch={dispatch}
+            user_answer={user_answer}
+          />
+        )}
 
         {/* finish */}
-        <QuizFinish />
+        {status === "finished" && <QuizFinish quizInfo={quizInfo} />}
       </header>
     </>
   );

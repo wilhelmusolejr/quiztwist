@@ -1,20 +1,38 @@
 import PropTypes from "prop-types";
 
-function QuizFooter({}) {
+function QuizFooter({ dispatch, quizInfo }) {
   return (
     <div className=" d-flex justify-content-between align-items-center">
       <div className="quiz-time">
         <span>Time Left: 00:00:00</span>
       </div>
-      <button className="btn btn-primary" onClick={() => {}}>
-        Next
-      </button>
+
+      {quizInfo.current_index + 1 != quizInfo.num_questions ? (
+        <button
+          className="btn btn-primary"
+          onClick={() => {
+            dispatch({ type: "NEXT_QUESTION" });
+          }}
+        >
+          Next
+        </button>
+      ) : (
+        <button
+          className="btn btn-primary"
+          onClick={() => {
+            dispatch({ type: "FINISH_QUIZ" });
+          }}
+        >
+          Finish
+        </button>
+      )}
     </div>
   );
 }
 
 QuizFooter.propTypes = {
-  dispatch: PropTypes.func.isRequired, // Ensure dispatch is a function and required
+  dispatch: PropTypes.func.isRequired,
+  quizInfo: PropTypes.object.isRequired,
 };
 
 export default QuizFooter;
