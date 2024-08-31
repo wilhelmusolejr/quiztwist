@@ -36,8 +36,22 @@ function reducer(state, action) {
 
     case "ANSWER_QUESTION":
       console.log(action.payload);
+      console.log(state);
 
-      return { ...state, answer: action.payload.user_answer };
+      return {
+        ...state,
+        answer: action.payload.user_answer,
+        points:
+          action.payload.user_answer ===
+          state.questions[state.currentQuestionIndex].correctAnswer
+            ? state.points + state.questions[state.currentQuestionIndex].points
+            : state.points,
+        correct_answers:
+          action.payload.user_answer ===
+          state.questions[state.currentQuestionIndex].correctAnswer
+            ? state.correct_answers + 1
+            : state.correct_answers,
+      };
 
     case "NEXT_QUESTION":
       return {
