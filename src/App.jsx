@@ -1,4 +1,6 @@
+import { faCircleCheck, faSackDollar } from "@fortawesome/free-solid-svg-icons";
 import Navigator from "./Components/Navigator";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function App() {
   return (
@@ -13,7 +15,7 @@ function App() {
         </div>
 
         {/* Quiz */}
-        <div className="container position-center question-parent">
+        <div className="container position-center question-parent d-none">
           <div className="container question-container p-3 rounded">
             {/* info */}
             <div className="quiz-info">
@@ -54,6 +56,24 @@ function App() {
                 <span>Time Left: 00:00:00</span>
               </div>
               <button className="btn btn-primary">Next</button>
+            </div>
+          </div>
+        </div>
+
+        {/* finish */}
+        <div className="container position-center finish-parent d-nones">
+          <div className="text-center">
+            <h2>Thanks for taking the quiz!</h2>
+            <h3 className="my-3">Well done!</h3>
+          </div>
+          <div className="ms-4 mt-5">
+            <div className="d-flex align-items-center gap-3 p-2">
+              <FontAwesomeIcon icon={faCircleCheck} />
+              <p>5 out of 10 questons passed!</p>
+            </div>
+            <div className="d-flex align-items-center gap-3 p-2">
+              <FontAwesomeIcon icon={faSackDollar} />
+              <p>280 points earned!</p>
             </div>
           </div>
         </div>
