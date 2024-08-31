@@ -22,7 +22,11 @@ function QuizProgress({ quizInfo, question, dispatch, user_answer }) {
         />
 
         {/* footer */}
-        <QuizFooter dispatch={dispatch} quizInfo={quizInfo} />
+        <QuizFooter
+          dispatch={dispatch}
+          quizInfo={quizInfo}
+          user_answer={user_answer}
+        />
       </div>
     </Section>
   );
