@@ -10,7 +10,10 @@ function QuizQuestion({ question, dispatch, user_answer }) {
         <h2 className="text-light">{question.question}</h2>
 
         {/* options */}
-        <div className="quiz-option text-light">
+        <div
+          className="quiz-option text-light d-flex
+        flex-column align-items-center"
+        >
           {question.answers.map((option, index) => {
             // Determine the class based on whether the answer is correct, incorrect, or unanswered
             let btnClass = "btn btn-option mt-3";

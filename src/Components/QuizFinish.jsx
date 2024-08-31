@@ -10,7 +10,7 @@ function QuizFinish({ quizInfo }) {
   const percentage = (quizInfo.correct_answers / quizInfo.num_questions) * 100;
 
   return (
-    <Section className={`${styles["finish-parent"]} position-center`}>
+    <Section className={`${styles["finish-parent"]} position-center `}>
       <div className="text-center">
         <h2>Thanks for taking the quiz!</h2>
         <h3 className="my-3">Well done!</h3>

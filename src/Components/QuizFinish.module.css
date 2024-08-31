@@ -1,3 +1,7 @@
+.finish-parent {
+  max-width: 500px;
+}
+
 .finish-parent svg {
   font-size: 32px;
 }

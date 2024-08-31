@@ -35,9 +35,6 @@ function reducer(state, action) {
       return { ...state, status: "progress" };
 
     case "ANSWER_QUESTION":
-      console.log(action.payload);
-      console.log(state);
-
       return {
         ...state,
         answer: action.payload.user_answer,
