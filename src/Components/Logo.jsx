@@ -2,8 +2,8 @@ import styles from "./Logo.module.css";
 
 function Logo() {
   return (
-    <div className={styles.Logo}>
-      <a href="#" className="text-decoration-none text-light">
+    <div className={`${styles.logo}`}>
+      <a href="/" className="text-decoration-none text-light">
         QuizTwist
       </a>
     </div>
