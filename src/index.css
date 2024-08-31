@@ -12,9 +12,44 @@ p {
 }
 
 :root {
+  --clr-main: #312d94;
+}
+
+/* ------------------- */
+/* Bootstrap overide */
+.btn {
+  font-weight: 700;
+}
+.btn-primary {
+  background-color: white;
+  color: var(--clr-main);
+}
+
+/* ------------------- */
+/* ------------------- */
+/* ------------------- */
+/* Predefined classes */
+.position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* ------------------- */
+/* ------------------- */
+/* ------------------- */
+
+body {
+  color: white;
+  font-family: "Poppins", sans-serif;
 }
 
 a {
+}
+
+svg {
+  font-size: 1.5rem;
+  color: white;
 }
 
 /* ------------------- */
@@ -31,3 +66,5 @@ header {
   min-height: 100vh;
   background: radial-gradient(#312d94, #252260);
 }
+
+/*  */
