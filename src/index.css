@@ -107,3 +107,13 @@ progress::-webkit-progress-value {
   min-height: 50vh;
   background-color: rgba(3, 10, 36, 0.9);
 }
+
+.finish-parent svg {
+  font-size: 32px;
+}
+.check-parent {
+  color: #0fff27;
+}
+.points-parent {
+  color: #faff0f;
+}

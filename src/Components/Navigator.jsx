@@ -5,8 +5,10 @@ import "./Navigator.bundle.css";
 
 const Navigator = () => {
   return (
-    <nav className="container py-3">
-      <div className={`container nav-parent`}>
+    <nav className="container nav-parent">
+      <div
+        className={`container d-flex justify-content-between align-items-center nav-container`}
+      >
         <div className="logo">
           <a href="#" className="text-decoration-none text-light">
             QuizTwist
