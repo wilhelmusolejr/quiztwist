@@ -1,1 +1,157 @@
-[{ "id": 1, "title": "Local Post" }]
+[
+  {
+    "id": 1,
+    "question": "What is the capital of France?",
+    "answers": ["Berlin", "Madrid", "Paris", "Rome"],
+    "correctAnswer": 2,
+    "points": 10
+  },
+  {
+    "id": 2,
+    "question": "Which planet is known as the Red Planet?",
+    "answers": ["Earth", "Mars", "Jupiter", "Saturn"],
+    "correctAnswer": 1,
+    "points": 10
+  },
+  {
+    "id": 3,
+    "question": "What is the largest mammal in the world?",
+    "answers": ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+    "correctAnswer": 1,
+    "points": 10
+  },
+  {
+    "id": 4,
+    "question": "Who wrote 'To Kill a Mockingbird'?",
+    "answers": ["Harper Lee", "J.K. Rowling", "Ernest Hemingway", "Mark Twain"],
+    "correctAnswer": 0,
+    "points": 10
+  },
+  {
+    "id": 5,
+    "question": "What is the smallest prime number?",
+    "answers": ["0", "1", "2", "3"],
+    "correctAnswer": 2,
+    "points": 10
+  },
+  {
+    "id": 6,
+    "question": "Which element has the chemical symbol 'O'?",
+    "answers": ["Oxygen", "Gold", "Osmium", "Oganesson"],
+    "correctAnswer": 0,
+    "points": 10
+  },
+  {
+    "id": 7,
+    "question": "What is the hardest natural substance on Earth?",
+    "answers": ["Gold", "Iron", "Diamond", "Platinum"],
+    "correctAnswer": 2,
+    "points": 10
+  },
+  {
+    "id": 8,
+    "question": "Who painted the Mona Lisa?",
+    "answers": [
+      "Leonardo da Vinci",
+      "Vincent van Gogh",
+      "Pablo Picasso",
+      "Claude Monet"
+    ],
+    "correctAnswer": 0,
+    "points": 10
+  },
+  {
+    "id": 9,
+    "question": "What is the largest ocean on Earth?",
+    "answers": [
+      "Atlantic Ocean",
+      "Indian Ocean",
+      "Arctic Ocean",
+      "Pacific Ocean"
+    ],
+    "correctAnswer": 3,
+    "points": 10
+  },
+  {
+    "id": 10,
+    "question": "How many continents are there on Earth?",
+    "answers": ["5", "6", "7", "8"],
+    "correctAnswer": 2,
+    "points": 10
+  },
+  {
+    "id": 11,
+    "question": "What is the capital of Japan?",
+    "answers": ["Seoul", "Beijing", "Tokyo", "Hanoi"],
+    "correctAnswer": 2,
+    "points": 10
+  },
+  {
+    "id": 12,
+    "question": "What gas do plants absorb from the atmosphere for photosynthesis?",
+    "answers": ["Oxygen", "Hydrogen", "Nitrogen", "Carbon Dioxide"],
+    "correctAnswer": 3,
+    "points": 10
+  },
+  {
+    "id": 13,
+    "question": "Which planet is closest to the Sun?",
+    "answers": ["Venus", "Earth", "Mercury", "Mars"],
+    "correctAnswer": 2,
+    "points": 10
+  },
+  {
+    "id": 14,
+    "question": "In what year did the Titanic sink?",
+    "answers": ["1912", "1911", "1913", "1914"],
+    "correctAnswer": 0,
+    "points": 10
+  },
+  {
+    "id": 15,
+    "question": "What is the chemical symbol for Gold?",
+    "answers": ["Au", "Ag", "Pb", "Fe"],
+    "correctAnswer": 0,
+    "points": 10
+  },
+  {
+    "id": 16,
+    "question": "Which planet is known as the 'Gas Giant'?",
+    "answers": ["Earth", "Mars", "Jupiter", "Venus"],
+    "correctAnswer": 2,
+    "points": 10
+  },
+  {
+    "id": 17,
+    "question": "Who was the first President of the United States?",
+    "answers": [
+      "George Washington",
+      "Thomas Jefferson",
+      "Abraham Lincoln",
+      "John Adams"
+    ],
+    "correctAnswer": 0,
+    "points": 10
+  },
+  {
+    "id": 18,
+    "question": "What is the largest desert in the world?",
+    "answers": ["Sahara", "Gobi", "Kalahari", "Antarctic Desert"],
+    "correctAnswer": 3,
+    "points": 10
+  },
+  {
+    "id": 19,
+    "question": "What is the main ingredient in guacamole?",
+    "answers": ["Tomato", "Onion", "Avocado", "Pepper"],
+    "correctAnswer": 2,
+    "points": 10
+  },
+  {
+    "id": 20,
+    "question": "What is the speed of light?",
+    "answers": ["300,000 km/s", "150,000 km/s", "75,000 km/s", "600,000 km/s"],
+    "correctAnswer": 0,
+    "points": 10
+  }
+]
