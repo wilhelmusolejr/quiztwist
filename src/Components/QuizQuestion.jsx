@@ -1,24 +1,29 @@
-import Button from "./Button";
+import PropTypes from "prop-types";
 
-function QuizQuestion() {
+function QuizQuestion({}) {
   return (
     <>
       <div className="quiz text-center py-5">
         {/* question */}
-        <h2 className="text-light">
-          Which is the most popular JavaScript framework?
-        </h2>
+        <h2 className="text-light">{question.question}</h2>
 
         {/* options */}
         <div className="quiz-option text-light">
-          <Button className={`btn-option mt-3`}>Angular</Button>
-          <Button className={`btn-option mt-3`}>Angular</Button>
-          <Button className={`btn-option mt-3`}>Angular</Button>
-          <Button className={`btn-option mt-3`}>Angular</Button>
+          {question.answers.map((option, index) => (
+            <button
+              key={index}
+              className={`btn btn-option mt-3`}
+              onClick={() => {}}
+            >
+              {option}
+            </button>
+          ))}
         </div>
       </div>
     </>
   );
 }
+
+QuizQuestion.propTypes = {};
 
 export default QuizQuestion;

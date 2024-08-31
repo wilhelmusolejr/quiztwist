@@ -1,5 +1,5 @@
 // components
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 
 import Navigator from "./Components/Navigator";
 import QuizFinish from "./Components/QuizFinish";
@@ -10,40 +10,43 @@ let initialState = {
   questions: [],
   points: 0,
   currentQuestionIndex: 0,
+  answer: null,
   status: "loading", // loading, ready, progress, finished
+  total_points: 0,
 };
 
 function reducer(state, action) {
   switch (action.type) {
-    case "INCREMENT":
-      return { count: state.count + 1 };
-    case "DECREMENT":
-      return { count: state.count - 1 };
+    case "SET_QUESTIONS":
+      return {
+        ...state,
+        questions: action.payload,
+        status: "ready",
+        total_points: action.payload.reduce((acc, question) => {
+          return acc + question.points;
+        }, 0),
+      };
+
     default:
       throw new Error("Unknown action type");
   }
 }
 
 function App() {
-  const [{ questions }, dispatch] = useReducer(reducer, initialState);
-
-  // const [questions, setQuestions] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch("/questions.json");
         const data = await response.json();
-        // setQuestions(data);
+        dispatch({ type: "SET_QUESTIONS", payload: data });
       } catch (error) {
         console.log(error);
       }
     };
-
     fetchData();
   }, []);
-
-  console.log(questions);
 
   return (
     <>
@@ -51,10 +54,10 @@ function App() {
 
       <header>
         {/* START */}
-        <QuizStart />
+        {status != "progress" && <QuizStart />}
 
         {/* Quiz */}
-        <QuizProgress />
+        {status === "progress" && <QuizProgress />}
 
         {/* finish */}
         <QuizFinish />

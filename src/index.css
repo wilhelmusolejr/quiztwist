@@ -16,6 +16,12 @@ p {
   --clr-main: #312d94;
   --clr-white: white;
   --clr-light-white: #f4f4f4;
+
+  --clr-green: #4caf50;
+  --clr-light-green: rgba(76, 175, 80, 0.1);
+
+  --clr-red: #f44336;
+  --clr-light-red: rgba(244, 67, 54, 0.1);
 }
 
 /* ------------------- */
@@ -41,7 +47,7 @@ p {
 /* BTN */
 /* BTN */
 .btn {
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 
 .btn-option {
@@ -54,8 +60,17 @@ p {
 }
 
 .btn-primary {
-  background-color: white;
-  color: var(--clr-main);
+  background-color: white !important;
+  color: var(--clr-main) !important;
+}
+
+.btn-correct {
+  border: 1px solid var(--clr-green) !important;
+  background-color: var(--clr-light-green) !important;
+}
+.btn-incorrect {
+  border: 1px solid var(--clr-red) !important;
+  background-color: var(--clr-light-red) !important;
 }
 
 /* ------------------- */

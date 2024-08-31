@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import QuizFooter from "./QuizFooter";
 import QuizInfo from "./QuizInfo";
 import QuizQuestion from "./QuizQuestion";
@@ -5,9 +7,9 @@ import Section from "./Section";
 
 import styles from "./QuizProgress.module.css";
 
-function QuizProgress() {
+function QuizProgress({}) {
   return (
-    <Section className="question-parent my-4 d-none">
+    <Section className="question-parent my-4">
       <div className={`container ${styles["question-container"]} p-3 rounded`}>
         {/* info */}
         <QuizInfo />
@@ -21,5 +23,7 @@ function QuizProgress() {
     </Section>
   );
 }
+
+QuizProgress.propTypes = {};
 
 export default QuizProgress;

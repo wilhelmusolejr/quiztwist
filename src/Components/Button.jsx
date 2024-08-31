@@ -1,7 +1,9 @@
-function button({ className = "", children }) {
+function button({ className = "", children, onClick = null }) {
   return (
     <>
-      <button className={`btn ${className}`}>{children}</button>
+      <button onClick={onClick} className={`btn ${className}`}>
+        {children}
+      </button>
     </>
   );
 }
