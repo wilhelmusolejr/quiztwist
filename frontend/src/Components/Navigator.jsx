@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faSackDollar } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Navigator.module.css";
 import Logo from "./Logo";
@@ -88,7 +88,7 @@ const Navigator = () => {
 
           {/* Dropdown menu */}
           <ul
-            className={`d-flex list-unstyled gap-2 ${styles["nav-link-parent"]} ${styles["show"]}`}
+            className={`d-flex list-unstyled gap-2 ${styles["nav-link-parent"]} `}
           >
             <li>
               <a href="#home">Categories</a>
@@ -105,20 +105,35 @@ const Navigator = () => {
                 </a>
               </li>
             ) : (
-              <li>
-                <a
-                  href="/logout"
-                  onClick={() => {
-                    logout();
-                  }}
-                >
-                  Logout
-                </a>
-              </li>
+              <>
+                <li className="ms-sm-0 ms-md-2 mt-1 mt-md-0">
+                  <p className="border py-2 px-4 rounded">
+                    <FontAwesomeIcon
+                      icon={faSackDollar}
+                      className="icon-coin me-2"
+                    />{" "}
+                    5000
+                  </p>
+                </li>
+                <li className="ms-sm-0 ms-md-4 mt-2 mt-md-0">
+                  <a
+                    href="/logout"
+                    onClick={() => {
+                      logout();
+                    }}
+                  >
+                    Logout
+                  </a>
+                </li>
+              </>
             )}
           </ul>
 
-          <FontAwesomeIcon icon={faBars} onClick={handleMenuClick} />
+          <FontAwesomeIcon
+            icon={faBars}
+            onClick={handleMenuClick}
+            className={`${styles["icon-bars"]}`}
+          />
         </div>
       </nav>
 

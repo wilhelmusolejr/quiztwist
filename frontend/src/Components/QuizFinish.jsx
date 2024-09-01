@@ -28,10 +28,7 @@ function QuizFinish({ quizInfo }) {
           </p>
         </div>
         <div className="d-flex align-items-center gap-3 p-2 ">
-          <FontAwesomeIcon
-            icon={faSackDollar}
-            className={`${styles["points-parent"]}`}
-          />
+          <FontAwesomeIcon icon={faSackDollar} className={`icon-coin`} />
           <p>{quizInfo.current_points} points earned!</p>
         </div>
       </div>

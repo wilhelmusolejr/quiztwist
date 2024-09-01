@@ -21,9 +21,7 @@
 .show {
   display: flex !important;
   flex-direction: column;
-  padding-top: 10px !important;
-  padding-left: 10px !important;
-  padding-bottom: 10px !important;
+  padding: 10px !important;
 
   position: absolute;
   top: 110%;
@@ -42,8 +40,12 @@
   color: var(--clr-white);
 }
 
+.nav-link-parent li {
+  width: fit-content;
+}
+
 @media screen and (min-width: 768px) {
-  .nav-container svg {
+  .nav-container .icon-bars {
     display: none !important;
   }
 
