@@ -81,6 +81,7 @@ body {
   color: var(--clr-light-white);
   font-family: "Poppins", sans-serif;
   background: radial-gradient(#312d94, #252260);
+  min-height: 100vh;
 }
 
 svg {

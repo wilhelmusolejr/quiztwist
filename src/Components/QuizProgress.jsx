@@ -15,7 +15,7 @@ function QuizProgress({
   time_limit,
 }) {
   return (
-    <Section className="question-parent my-4">
+    <Section className="question-parent">
       <div className={`container ${styles["question-container"]} p-3 rounded`}>
         {/* info */}
         <QuizInfo quizInfo={quizInfo} />

@@ -26,7 +26,7 @@ const Navigator = () => {
             <a href="#home">Categories</a>
           </li>
           <li>
-            <a className="btn btn-primary" href="#">
+            <a className="btn btn-primary" href="/login">
               Login
             </a>
           </li>

@@ -2,6 +2,7 @@
 /* NAV */
 .nav-parent {
   padding-top: 3vh;
+  padding-bottom: 3vh;
 }
 
 .nav-container {
@@ -48,6 +49,7 @@
 
   .nav-parent {
     padding-top: 5vh;
+    padding-bottom: 5vh;
   }
 
   .nav-link-parent {
