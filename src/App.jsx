@@ -8,15 +8,15 @@ import QuizStart from "./Components/QuizStart";
 
 let initialState = {
   questions: [],
-  points: 0,
   currentQuestionIndex: 0,
+  points: 0,
+  total_points: 0,
   answer: null,
   correct_answers: 0,
+  time_limit: 50,
 
   // loading, ready, onprogress, finished
   status: "loading",
-
-  total_points: 0,
 };
 
 function reducer(state, action) {
@@ -29,6 +29,7 @@ function reducer(state, action) {
         total_points: action.payload.reduce((acc, question) => {
           return acc + question.points;
         }, 0),
+        time_limit: action.payload.length * 10,
       };
 
     case "START_QUIZ":
@@ -71,7 +72,7 @@ function reducer(state, action) {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  let { status, questions, currentQuestionIndex } = state;
+  let { status, questions, currentQuestionIndex, time_limit } = state;
 
   let quizInfo = {
     num_questions: questions.length,
@@ -111,6 +112,7 @@ function App() {
             question={questions[currentQuestionIndex]}
             dispatch={dispatch}
             user_answer={user_answer}
+            time_limit={time_limit}
           />
         )}
 
