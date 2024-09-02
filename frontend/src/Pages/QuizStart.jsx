@@ -5,6 +5,7 @@ import Navigator from "../Components/Navigator";
 import QuizFinish from "../Components/QuizFinish";
 import QuizProgress from "../Components/QuizProgress";
 import QuizReady from "../Components/QuizReady";
+import axios from "axios";
 
 let initialState = {
   questions: [],
@@ -41,12 +42,12 @@ function reducer(state, action) {
         answer: action.payload.user_answer,
         points:
           action.payload.user_answer ===
-          state.questions[state.currentQuestionIndex].correctAnswer
+          state.questions[state.currentQuestionIndex].answer
             ? state.points + state.questions[state.currentQuestionIndex].points
             : state.points,
         correct_answers:
           action.payload.user_answer ===
-          state.questions[state.currentQuestionIndex].correctAnswer
+          state.questions[state.currentQuestionIndex].answer
             ? state.correct_answers + 1
             : state.correct_answers,
       };
@@ -85,11 +86,19 @@ function Home() {
   let user_answer = state.answer;
 
   useEffect(() => {
+    const questionData = {
+      number_question: 15,
+      category: "General",
+    };
+
     const fetchData = async () => {
       try {
-        const response = await fetch("/questions.json");
-        const data = await response.json();
-        dispatch({ type: "SET_QUESTIONS", payload: data });
+        const response = await axios.post(
+          "http://localhost:3000/api/question/getListQuestions",
+          questionData
+        );
+
+        dispatch({ type: "SET_QUESTIONS", payload: response.data.questions });
       } catch (error) {
         console.log(error);
       }

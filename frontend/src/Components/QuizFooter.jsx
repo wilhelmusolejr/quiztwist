@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 
 import styles from "./QuizFooter.module.css";
 
+let seconds = 5000;
+
 function QuizFooter({ dispatch, quizInfo, user_answer, time_limit }) {
   const [timeLeft, setTimeLeft] = useState(time_limit);
 
@@ -18,7 +20,7 @@ function QuizFooter({ dispatch, quizInfo, user_answer, time_limit }) {
       // Start countdown
       let timer = setTimeout(() => {
         dispatch({ type: "NEXT_QUESTION" });
-      }, 5000);
+      }, seconds);
 
       let interval = setInterval(() => {
         if (counterRef.current) {

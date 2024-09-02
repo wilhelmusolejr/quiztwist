@@ -14,17 +14,15 @@ function QuizQuestion({ question, dispatch, user_answer }) {
           className="quiz-option text-light d-flex
         flex-column align-items-center"
         >
-          {question.answers.map((option, index) => {
+          {question.options.map((option, index) => {
             // Determine the class based on whether the answer is correct, incorrect, or unanswered
             let btnClass = "btn btn-option mt-3";
 
             if (hasAnswered) {
               if (index === user_answer) {
                 btnClass +=
-                  index === question.correctAnswer
-                    ? " btn-correct"
-                    : " btn-incorrect";
-              } else if (index === question.correctAnswer) {
+                  index === question.answer ? " btn-correct" : " btn-incorrect";
+              } else if (index === question.answer) {
                 btnClass += " btn-correct";
               }
             }

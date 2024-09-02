@@ -7,7 +7,10 @@ import Section from "./Section";
 import styles from "./QuizFinish.module.css";
 
 function QuizFinish({ quizInfo }) {
-  const percentage = (quizInfo.correct_answers / quizInfo.num_questions) * 100;
+  const percentage = (
+    (quizInfo.correct_answers / quizInfo.num_questions) *
+    100
+  ).toFixed();
 
   return (
     <Section className={`${styles["finish-parent"]} position-center`}>

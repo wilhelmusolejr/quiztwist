@@ -45,7 +45,7 @@ export default function ModalLogin() {
         {/* Email */}
         <div className="mb-3">
           <LabelInput
-            id={"email"}
+            id={"emailLogin"}
             label={"Email address"}
             value={email}
             setValue={setEmail}
@@ -55,7 +55,7 @@ export default function ModalLogin() {
         {/* Password */}
         <div className="mb-3">
           <LabelInput
-            id={"password"}
+            id={"passwordLogin"}
             label={"Password"}
             value={password}
             setValue={setPassword}
