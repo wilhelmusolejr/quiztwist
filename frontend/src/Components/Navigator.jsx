@@ -3,10 +3,8 @@ import { faBars, faSackDollar } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Navigator.module.css";
 import Logo from "./Logo";
-import { useContext, useState } from "react";
-import axios from "axios";
+import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
-import Modal from "./Modal";
 import ModalLogin from "./ModalLogin";
 import ModalRegister from "./ModalRegister";
 
