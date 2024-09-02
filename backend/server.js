@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
+import questionRoutes from "./routes/question.route.js";
 import { connectDB } from "./db/connectDB.js";
 import cors from "cors";
 
@@ -21,6 +22,9 @@ app.use(express.json()); // Allows us to parse JSON data in the body of the requ
 
 // ROUTE
 app.use("/api/auth", authRoutes);
+
+// QUESTION
+app.use("/api/question", questionRoutes);
 
 app.listen(PORT, () => {
   connectDB();
