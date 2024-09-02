@@ -1,12 +1,11 @@
 import PropTypes from "prop-types";
 import Section from "./Section";
 import CategoryContainer from "./CategoryContainer";
-import { faFlask } from "@fortawesome/free-solid-svg-icons";
 import Modal from "./Modal";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 
-function QuizReady({ dispatch }) {
+function QuizReady({ dispatch, icon, number_question, quiz_title }) {
   const { user } = useContext(AuthContext);
 
   function handleStart() {
@@ -17,6 +16,25 @@ function QuizReady({ dispatch }) {
 
   return (
     <>
+      <Section className="text-center position-center">
+        <div className="d-flex align-items-center justify-content-center mb-5">
+          <CategoryContainer icon={icon} title={quiz_title} />
+        </div>
+
+        <h2>
+          {number_question} questions to test your {quiz_title} knowledge!
+        </h2>
+
+        <button
+          className="btn btn-primary mt-4"
+          data-bs-toggle={user ? "" : "modal"}
+          data-bs-target={user ? "" : "#checkUserModal"}
+          onClick={user ? handleStart : null}
+        >
+          {"Let's start"}
+        </button>
+      </Section>
+
       <Modal id={"checkUserModal"} modalTitle={"Are you sure?"}>
         <p>
           You&apos;re not currently logged in. If you continue, your progress
@@ -44,23 +62,6 @@ function QuizReady({ dispatch }) {
           </button>
         </div>
       </Modal>
-
-      <Section className="text-center position-center">
-        <div className="d-flex align-items-center justify-content-center mb-5">
-          <CategoryContainer icon={faFlask} title="General" />
-        </div>
-
-        <h2>15 questions to test your React Mastery!</h2>
-
-        <button
-          className="btn btn-primary mt-4"
-          data-bs-toggle={user ? "" : "modal"}
-          data-bs-target={user ? "" : "#checkUserModal"}
-          onClick={user ? handleStart : null}
-        >
-          {"Let's start"}
-        </button>
-      </Section>
     </>
   );
 }

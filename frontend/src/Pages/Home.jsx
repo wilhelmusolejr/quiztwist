@@ -27,10 +27,26 @@ export default function Homee() {
 
           {/* rigt */}
           <div className="d-flex flex-wrap  justify-content-center align-items-center">
-            <CategoryContainer icon={faFlask} title="General" />
-            <CategoryContainer icon={faBook} title="English" link="/quiz" />
-            <CategoryContainer icon={faRocket} title="Science" />
-            <CategoryContainer icon={faMap} title="Country" />
+            <CategoryContainer
+              icon={faFlask}
+              title="General"
+              link="/quiz/general"
+            />
+            <CategoryContainer
+              icon={faBook}
+              title="English"
+              link="/quiz/english"
+            />
+            <CategoryContainer
+              icon={faRocket}
+              title="Science"
+              link="/quiz/science"
+            />
+            <CategoryContainer
+              icon={faMap}
+              title="Country"
+              link="/quiz/country"
+            />
           </div>
         </Section>
       </header>

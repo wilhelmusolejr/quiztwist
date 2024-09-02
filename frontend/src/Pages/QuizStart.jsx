@@ -1,12 +1,22 @@
 // components
 import { useEffect, useReducer } from "react";
 
+import {
+  faBook,
+  faFlask,
+  faMap,
+  faRocket,
+} from "@fortawesome/free-solid-svg-icons";
+
 import Navigator from "../Components/Navigator";
 import QuizFinish from "../Components/QuizFinish";
 import QuizProgress from "../Components/QuizProgress";
 import QuizReady from "../Components/QuizReady";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
+let num_questions = 15;
+let icon;
 let initialState = {
   questions: [],
   currentQuestionIndex: 0,
@@ -70,7 +80,17 @@ function reducer(state, action) {
   }
 }
 
+function capitalizeFirstLetter(string) {
+  if (!string) return ""; // Handle empty string
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
 function Home() {
+  const location = useLocation();
+  const capitalizedCategory = capitalizeFirstLetter(
+    location.pathname.split("/")[2]
+  );
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   let { status, questions, currentQuestionIndex, time_limit } = state;
@@ -87,8 +107,8 @@ function Home() {
 
   useEffect(() => {
     const questionData = {
-      number_question: 15,
-      category: "General",
+      number_question: num_questions,
+      category: capitalizedCategory,
     };
 
     const fetchData = async () => {
@@ -106,13 +126,41 @@ function Home() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    switch (capitalizedCategory) {
+      case "General":
+        document.title = "General Quiz";
+        icon = faFlask;
+        break;
+      case "English":
+        document.title = "English Quiz";
+        icon = faBook;
+        break;
+      case "Science":
+        document.title = "Science Quiz";
+        icon = faRocket;
+        break;
+      case "Country":
+        document.title = "Country Quiz";
+        icon = faMap;
+        break;
+    }
+  }, [capitalizedCategory]);
+
   return (
     <>
       <Navigator />
 
       <header>
         {/* START */}
-        {status === "ready" && <QuizReady dispatch={dispatch} />}
+        {status === "ready" && (
+          <QuizReady
+            dispatch={dispatch}
+            icon={icon}
+            quiz_title={capitalizedCategory}
+            number_question={num_questions}
+          />
+        )}
 
         {/* Quiz */}
         {status === "progress" && (
