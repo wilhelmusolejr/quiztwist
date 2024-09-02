@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
 import questionRoutes from "./routes/question.route.js";
+import quizRoutes from "./routes/quiz.route.js";
 import { connectDB } from "./db/connectDB.js";
 import cors from "cors";
 
@@ -25,6 +26,9 @@ app.use("/api/auth", authRoutes);
 
 // QUESTION
 app.use("/api/question", questionRoutes);
+
+// QUIZ
+app.use("/api/quiz", quizRoutes);
 
 app.listen(PORT, () => {
   connectDB();

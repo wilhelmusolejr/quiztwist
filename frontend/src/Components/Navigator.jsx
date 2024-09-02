@@ -29,7 +29,7 @@ const Navigator = () => {
           <ul
             className={`d-flex list-unstyled gap-2 ${styles["nav-link-parent"]} `}
           >
-            <li>
+            <li className="d-none">
               <a href="#home">Categories</a>
             </li>
             {!user ? (
@@ -51,7 +51,7 @@ const Navigator = () => {
                       icon={faSackDollar}
                       className="icon-coin me-2"
                     />{" "}
-                    5000
+                    {user.points}
                   </p>
                 </li>
                 <li className="ms-sm-0 ms-md-4 mt-2 mt-md-0">

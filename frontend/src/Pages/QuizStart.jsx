@@ -1,5 +1,5 @@
 // components
-import { useEffect, useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
 
 import {
   faBook,
@@ -14,6 +14,7 @@ import QuizProgress from "../Components/QuizProgress";
 import QuizReady from "../Components/QuizReady";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 
 let num_questions = 15;
 let icon;
@@ -81,11 +82,13 @@ function reducer(state, action) {
 }
 
 function capitalizeFirstLetter(string) {
-  if (!string) return ""; // Handle empty string
+  if (!string) return ""; // if string is empty
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
 function Home() {
+  const { user, updatePoints } = useContext(AuthContext);
+
   const location = useLocation();
   const capitalizedCategory = capitalizeFirstLetter(
     location.pathname.split("/")[2]
@@ -105,6 +108,7 @@ function Home() {
 
   let user_answer = state.answer;
 
+  // fetch questions from the database
   useEffect(() => {
     const questionData = {
       number_question: num_questions,
@@ -126,6 +130,7 @@ function Home() {
     fetchData();
   }, []);
 
+  // set title and icon
   useEffect(() => {
     switch (capitalizedCategory) {
       case "General":
@@ -146,6 +151,36 @@ function Home() {
         break;
     }
   }, [capitalizedCategory]);
+
+  // if quiz is finish, push points to the database
+  useEffect(() => {
+    if (state.status === "finished") {
+      const addPoints = async () => {
+        const quizResult = {
+          user: user._id,
+          points: state.points,
+          type: capitalizedCategory,
+        };
+
+        try {
+          const response = await axios.post(
+            "http://localhost:3000/api/quiz/add-points",
+            quizResult
+          );
+
+          console.log(response.data.quiz.points);
+
+          updatePoints(response.data.quiz.points);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      if (user) {
+        addPoints();
+      }
+    }
+  }, [state.status]);
 
   return (
     <>

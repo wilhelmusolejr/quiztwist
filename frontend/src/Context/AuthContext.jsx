@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 
 // Create a context
@@ -29,8 +29,36 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
   };
 
+  // Function to update points
+  const updateUser = (userData) => {
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData));
+  };
+
+  const updatePoints = (points) => {
+    if (user) {
+      setUser((prevUser) => {
+        const updatedUser = { ...prevUser, points: prevUser.points + points };
+        return updatedUser;
+      });
+    } else {
+      console.error("User not found in context");
+    }
+  };
+
+  // Sync user state with localStorage
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [user]);
+
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, token, login, logout, updateUser, updatePoints }}
+    >
       {children}
     </AuthContext.Provider>
   );
