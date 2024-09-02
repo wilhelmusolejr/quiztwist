@@ -206,6 +206,21 @@ function Home() {
     }
   }, [state.status]);
 
+  useEffect(() => {
+    const temp = `${capitalizedCategory} Quiz | `;
+
+    switch (state.status) {
+      case PROGRESS_READY:
+        document.title = `${temp} Ready`;
+        break;
+      case PROGRESS_PROGRESS:
+        document.title = `${temp} Question ${currentQuestionIndex + 1}`;
+        break;
+      case PROGRESS_FINISHED:
+        document.title = `${temp} Finished`;
+    }
+  }, [state.status, currentQuestionIndex, capitalizedCategory]);
+
   return (
     <>
       <Navigator />
