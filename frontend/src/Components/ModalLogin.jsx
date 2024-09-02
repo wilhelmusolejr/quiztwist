@@ -4,6 +4,8 @@ import { AuthContext } from "../Context/AuthContext";
 import Modal from "./Modal";
 import LabelInput from "./LabelInput";
 
+const BACKEND_URL = `http://localhost:3000/api`;
+
 export default function ModalLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,26 +15,36 @@ export default function ModalLogin() {
   async function loginFormSubmit(e) {
     e.preventDefault();
 
+    // Trim whitespace from email and password
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+
+    if (!trimmedEmail || !trimmedPassword) {
+      setError("Please enter both email and password.");
+      return;
+    }
+
     // Prepare the data to send
     const userData = {
-      email,
-      password,
+      email: trimmedEmail,
+      password: trimmedPassword,
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
-        userData
-      );
+      const response = await axios.post(`${BACKEND_URL}/auth/login`, userData);
 
-      if (response.data.sucess) {
+      if (response.data.success) {
         login(response.data.user, response.data.token);
+      } else {
+        setError("Login failed. Please try again.");
       }
     } catch (error) {
-      console.log(error.response);
-
-      if (error.response.status === 400) {
-        setError(error.response.data.message);
+      if (error.response && error.response.status === 400) {
+        setError(
+          error.response.data.message || "An error occurred. Please try again."
+        );
+      } else {
+        setError("An unexpected error occurred.");
       }
     }
   }
@@ -56,6 +68,7 @@ export default function ModalLogin() {
         <div className="mb-3">
           <LabelInput
             id={"passwordLogin"}
+            type="password"
             label={"Password"}
             value={password}
             setValue={setPassword}

@@ -1,8 +1,13 @@
+// Import necessary libraries
 import { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import Modal from "./Modal";
+
+// components
 import LabelInput from "./LabelInput";
+
+const BACKEND_URL = `http://localhost:3000/api`;
 
 export default function ModalRegister() {
   const [firstName, setFirstName] = useState("");
@@ -17,27 +22,54 @@ export default function ModalRegister() {
   async function registerFormSubmit(e) {
     e.preventDefault();
 
+    // Trim and validate inputs
+    const trimmedFirstName = firstName.trim();
+    const trimmedLastName = lastName.trim();
+    const trimmedEmail = email.trim();
+    const trimmedBirthdate = birthdate.trim();
+    const trimmedPassword = password.trim();
+
+    if (
+      !trimmedFirstName ||
+      !trimmedLastName ||
+      !trimmedEmail ||
+      !trimmedBirthdate ||
+      !trimmedPassword
+    ) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
     // Prepare the data to send
     const userData = {
-      firstName,
-      lastName,
-      email,
-      birthdate,
-      password,
+      firstName: trimmedFirstName,
+      lastName: trimmedLastName,
+      email: trimmedEmail,
+      birthdate: trimmedBirthdate,
+      password: trimmedPassword,
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/signup",
-        userData
-      );
+      const response = await axios.post(`${BACKEND_URL}/auth/signup`, userData);
 
-      if (response.data.sucess) {
+      if (response.data.success) {
         login(response.data.user, response.data.token);
+      } else {
+        setError("Registration failed. Please try again.");
       }
     } catch (error) {
-      if (error.response.status === 400) {
-        setError(error.response.data.message);
+      if (error.response) {
+        // Provide specific error messages based on response status
+        if (error.response.status === 400) {
+          setError(
+            error.response.data.message ||
+              "Invalid input. Please check your details."
+          );
+        } else {
+          setError("An error occurred. Please try again.");
+        }
+      } else {
+        setError("Network error. Please check your connection.");
       }
     }
   }

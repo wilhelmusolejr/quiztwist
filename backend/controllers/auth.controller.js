@@ -43,7 +43,7 @@ export const signup = async (req, res) => {
     await sendGreeting("wilhelmus.olejr@gmail.com", user.firstName);
 
     return res.status(201).json({
-      sucess: true,
+      success: true,
       message: "User created",
       token: token,
       user: {
@@ -87,7 +87,7 @@ export const login = async (req, res) => {
     generateTokenAndSetCookie(res, user._id);
 
     return res.status(200).json({
-      sucess: true,
+      success: true,
       message: "User logged in",
       user: {
         ...user._doc,

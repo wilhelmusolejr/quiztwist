@@ -1,6 +1,10 @@
-// components
+// Import necessary libraries
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 import { useContext, useEffect, useReducer } from "react";
 
+// Import necessary icons
 import {
   faBook,
   faFlask,
@@ -8,16 +12,31 @@ import {
   faRocket,
 } from "@fortawesome/free-solid-svg-icons";
 
+// Import components
 import Navigator from "../Components/Navigator";
 import QuizFinish from "../Components/QuizFinish";
 import QuizProgress from "../Components/QuizProgress";
 import QuizReady from "../Components/QuizReady";
-import axios from "axios";
-import { useLocation } from "react-router-dom";
-import { AuthContext } from "../Context/AuthContext";
 
-let num_questions = 15;
+const BACKEND_URL = `http://localhost:3000/api`;
+
+// variables
+const num_questions = 15;
+
+const SET_QUESTIONS = "SET_QUESTIONS";
+const START_QUIZ = "START_QUIZ";
+const ANSWER_QUESTION = "ANSWER_QUESTION";
+const NEXT_QUESTION = "NEXT_QUESTION";
+const FINISH_QUIZ = "FINISH_QUIZ";
+
+const PROGRESS_READY = "ready";
+const PROGRESS_PROGRESS = "progress";
+const PROGRESS_FINISHED = "finished";
+
+const time_limit_per_question = 10;
+
 let icon;
+
 let initialState = {
   questions: [],
   currentQuestionIndex: 0,
@@ -32,52 +51,54 @@ let initialState = {
 };
 
 function reducer(state, action) {
-  switch (action.type) {
-    case "SET_QUESTIONS":
+  const { type, payload } = action;
+
+  switch (type) {
+    case SET_QUESTIONS:
       return {
         ...state,
-        questions: action.payload,
-        status: "ready",
-        total_points: action.payload.reduce((acc, question) => {
+        questions: payload,
+        status: PROGRESS_READY,
+        total_points: payload.reduce((acc, question) => {
           return acc + question.points;
         }, 0),
-        time_limit: action.payload.length * 10,
+        time_limit: payload.length * time_limit_per_question,
       };
 
-    case "START_QUIZ":
-      return { ...state, status: "progress" };
+    case START_QUIZ:
+      return { ...state, status: PROGRESS_PROGRESS };
 
-    case "ANSWER_QUESTION":
+    case ANSWER_QUESTION:
       return {
         ...state,
-        answer: action.payload.user_answer,
+        answer: payload.user_answer,
         points:
-          action.payload.user_answer ===
+          payload.user_answer ===
           state.questions[state.currentQuestionIndex].answer
             ? state.points + state.questions[state.currentQuestionIndex].points
             : state.points,
         correct_answers:
-          action.payload.user_answer ===
+          payload.user_answer ===
           state.questions[state.currentQuestionIndex].answer
             ? state.correct_answers + 1
             : state.correct_answers,
       };
 
-    case "NEXT_QUESTION":
+    case NEXT_QUESTION:
       return {
         ...state,
         answer: null,
         currentQuestionIndex: state.currentQuestionIndex + 1,
       };
 
-    case "FINISH_QUIZ":
+    case FINISH_QUIZ:
       return {
         ...state,
-        status: "finished",
+        status: PROGRESS_FINISHED,
       };
 
     default:
-      throw new Error("Unknown action type");
+      throw new Error(`Unknown action type: ${type}`);
   }
 }
 
@@ -110,6 +131,8 @@ function Home() {
 
   // fetch questions from the database
   useEffect(() => {
+    const controller = new AbortController();
+
     const questionData = {
       number_question: num_questions,
       category: capitalizedCategory,
@@ -117,17 +140,21 @@ function Home() {
 
     const fetchData = async () => {
       try {
-        const response = await axios.post(
-          "http://localhost:3000/api/question/getListQuestions",
+        const {
+          data: { questions },
+        } = await axios.post(
+          `${BACKEND_URL}/question/getListQuestions`,
           questionData
         );
 
-        dispatch({ type: "SET_QUESTIONS", payload: response.data.questions });
+        dispatch({ type: SET_QUESTIONS, payload: questions });
       } catch (error) {
-        console.log(error);
+        console.error("Failed to fetch questions:", error);
       }
     };
     fetchData();
+
+    return () => controller.abort();
   }, []);
 
   // set title and icon
@@ -154,7 +181,7 @@ function Home() {
 
   // if quiz is finish, push points to the database
   useEffect(() => {
-    if (state.status === "finished") {
+    if (state.status === PROGRESS_FINISHED) {
       const addPoints = async () => {
         const quizResult = {
           user: user._id,
@@ -164,12 +191,9 @@ function Home() {
 
         try {
           const response = await axios.post(
-            "http://localhost:3000/api/quiz/add-points",
+            `${BACKEND_URL}/quiz/add-points`,
             quizResult
           );
-
-          console.log(response.data.quiz.points);
-
           updatePoints(response.data.quiz.points);
         } catch (error) {
           console.log(error);

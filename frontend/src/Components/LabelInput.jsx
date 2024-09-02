@@ -11,6 +11,7 @@ export default function LabelInput({
         {label}
       </label>
       <input
+        required
         type={type}
         className="form-control"
         id={id}

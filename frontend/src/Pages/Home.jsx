@@ -1,5 +1,8 @@
+// Component for Home page
 import Navigator from "../Components/Navigator";
 import Section from "../Components/Section";
+
+// icons
 import {
   faBook,
   faFlask,
@@ -8,9 +11,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import CategoryContainer from "../Components/CategoryContainer";
 
+// styles
 import styles from "./Home.module.css";
 
-export default function Homee() {
+export default function Home() {
   return (
     <>
       <Navigator />

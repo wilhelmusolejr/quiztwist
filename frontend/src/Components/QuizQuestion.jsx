@@ -3,6 +3,15 @@ import PropTypes from "prop-types";
 function QuizQuestion({ question, dispatch, user_answer }) {
   let hasAnswered = user_answer != null;
 
+  function handleOptionClick(index) {
+    dispatch({
+      type: "ANSWER_QUESTION",
+      payload: {
+        user_answer: index,
+      },
+    });
+  }
+
   return (
     <>
       <div className="quiz text-center py-5">
@@ -26,19 +35,11 @@ function QuizQuestion({ question, dispatch, user_answer }) {
                 btnClass += " btn-correct";
               }
             }
-
             return (
               <button
                 key={index}
                 className={`${btnClass} ${hasAnswered ? "disabled" : ""}`}
-                onClick={() => {
-                  dispatch({
-                    type: "ANSWER_QUESTION",
-                    payload: {
-                      user_answer: index,
-                    },
-                  });
-                }}
+                onClick={() => handleOptionClick(index)}
               >
                 {option}
               </button>

@@ -3,12 +3,12 @@ import { faBars, faSackDollar } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Navigator.module.css";
 import Logo from "./Logo";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import ModalLogin from "./ModalLogin";
 import ModalRegister from "./ModalRegister";
 
-const Navigator = () => {
+const Navigator = React.memo(function Navigator() {
   const { user, logout } = useContext(AuthContext);
 
   const handleMenuClick = () => {
@@ -83,6 +83,6 @@ const Navigator = () => {
       <ModalRegister />
     </>
   );
-};
+});
 
 export default Navigator;
