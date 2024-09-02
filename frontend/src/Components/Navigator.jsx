@@ -94,7 +94,7 @@ const Navigator = () => {
               <a href="#home">Categories</a>
             </li>
             {!user ? (
-              <li className="ms-4">
+              <li className="ms-sm-0 ms-md-4 mt-2 mt-md-0">
                 <a
                   type="button"
                   className="btn btn-primary"
