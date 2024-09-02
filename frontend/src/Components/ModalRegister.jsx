@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import Modal from "./Modal";
+import LabelInput from "./LabelInput";
 
 export default function ModalRegister() {
   const [firstName, setFirstName] = useState("");
@@ -49,80 +50,63 @@ export default function ModalRegister() {
         }}
       >
         {error && <div className="alert alert-danger">{error}</div>}
+        {/* first name */}
         <div className="mb-3">
-          <label htmlFor="firstName" className="form-label">
-            First Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="firstName"
+          <LabelInput
+            id={"firstName"}
+            label={"First Name"}
             value={firstName}
-            onChange={(e) => {
-              setFirstName(e.target.value);
-            }}
+            setValue={setFirstName}
           />
         </div>
+
+        {/* last name */}
         <div className="mb-3">
-          <label htmlFor="lastName" className="form-label">
-            Last Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="lastName"
+          <LabelInput
+            id={"lastName"}
+            label={"Last Name"}
             value={lastName}
-            onChange={(e) => {
-              setLastName(e.target.value);
-            }}
+            setValue={setLastName}
           />
         </div>
+
+        {/* email */}
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email address
-          </label>
-          <input
+          <LabelInput
+            id={"email"}
             type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
+            label={"Email address"}
             value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+            setValue={setEmail}
           />
+
           <div id="emailHelp" className="form-text">
             We will never share your email with anyone else.
           </div>
         </div>
+
+        {/* birthdate */}
         <div className="mb-3">
-          <label htmlFor="birthdate" className="form-label">
-            Birthdate
-          </label>
-          <input
+          <LabelInput
+            id={"birthdate"}
+            label={"Birthdate"}
             type="date"
-            className="form-control"
-            id="birthdate"
             value={birthdate}
-            onChange={(e) => {
-              setBirthdate(e.target.value);
-            }}
+            setValue={setBirthdate}
           />
         </div>
+
+        {/* password */}
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input
+          <LabelInput
+            id={"password"}
+            label={"Password"}
             type="password"
-            className="form-control"
-            id="password"
             value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            setValue={setPassword}
           />
         </div>
+
         <button type="submit" className="btn btn-primary w-100 mb-4">
           Register
         </button>
@@ -135,7 +119,7 @@ export default function ModalRegister() {
             href="#"
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#loginModal"
           >
             Login
           </a>
