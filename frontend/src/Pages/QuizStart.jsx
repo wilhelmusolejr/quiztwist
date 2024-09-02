@@ -4,7 +4,7 @@ import { useEffect, useReducer } from "react";
 import Navigator from "../Components/Navigator";
 import QuizFinish from "../Components/QuizFinish";
 import QuizProgress from "../Components/QuizProgress";
-import QuizStart from "../Components/QuizStart";
+import QuizReady from "../Components/QuizReady";
 
 let initialState = {
   questions: [],
@@ -103,7 +103,7 @@ function Home() {
 
       <header>
         {/* START */}
-        {status === "ready" && <QuizStart dispatch={dispatch} />}
+        {status === "ready" && <QuizReady dispatch={dispatch} />}
 
         {/* Quiz */}
         {status === "progress" && (

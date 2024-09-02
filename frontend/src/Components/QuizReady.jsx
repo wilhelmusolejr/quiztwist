@@ -1,9 +1,15 @@
 import PropTypes from "prop-types";
 import Section from "./Section";
+import CategoryContainer from "./CategoryContainer";
+import { faFlask } from "@fortawesome/free-solid-svg-icons";
 
-function QuizStart({ dispatch }) {
+function QuizReady({ dispatch }) {
   return (
     <Section className="text-center position-center">
+      <div className="d-flex align-items-center justify-content-center mb-5">
+        <CategoryContainer icon={faFlask} title="General" />
+      </div>
+
       <h2>15 questions to test your React Mastery!</h2>
 
       <button
@@ -17,8 +23,8 @@ function QuizStart({ dispatch }) {
 }
 
 // Define PropTypes for the component
-QuizStart.propTypes = {
+QuizReady.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default QuizStart;
+export default QuizReady;
