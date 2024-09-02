@@ -1,13 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function CategoryContainer({ icon, title = "" }) {
+import styles from "./CategoryContainer.module.css";
+
+export default function CategoryContainer({ icon, title = "", link = "#" }) {
   return (
-    <div
-      className="child rounded d-flex flex-column gap-3
-     justify-content-center align-items-center"
+    <a
+      href={link}
+      className={`${styles["child"]} rounded d-flex flex-column gap-3
+     justify-content-center align-items-center text-light`}
     >
-      <FontAwesomeIcon icon={icon} />
+      <FontAwesomeIcon icon={icon} className={`${styles["svg"]}`} />
       <p>{title}</p>
-    </div>
+    </a>
   );
 }

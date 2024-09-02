@@ -1,0 +1,53 @@
+.child {
+  min-width: 130px;
+  height: 130px;
+
+  background: rgba(124, 117, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5px);
+}
+
+.child .svg {
+  font-size: 5vh;
+}
+
+.child:nth-child(1) .svg {
+  color: white;
+}
+.child:nth-child(2) .svg {
+  color: white;
+}
+.child:nth-child(3) .svg {
+  color: white;
+}
+.child:nth-child(4) .svg {
+  color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .child {
+    max-width: 400px;
+  }
+
+  .child .svg {
+    font-size: 7vh;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .child {
+    min-width: 150px;
+    height: 150px;
+  }
+
+  .child .svg {
+    font-size: 10vh;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .child {
+    min-width: 250px;
+    height: 250px;
+  }
+}
