@@ -4,7 +4,7 @@ import { AuthContext } from "../Context/AuthContext";
 import Modal from "./Modal";
 import LabelInput from "./LabelInput";
 
-const BACKEND_URL = `http://localhost:3000/api`;
+const BACKEND_URL = `https://quiztwist-backend.vercel.app/api`;
 
 export default function ModalLogin() {
   const [email, setEmail] = useState("");

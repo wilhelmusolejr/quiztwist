@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
-import { useContext, useEffect, useReducer } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
 
 // Import necessary icons
 import {
@@ -110,6 +110,7 @@ function capitalizeFirstLetter(string) {
 
 function Home() {
   const { user, updatePoints } = useContext(AuthContext);
+  const [toast, setToast] = useState(false);
 
   const location = useLocation();
   const capitalizedCategory = capitalizeFirstLetter(
@@ -191,11 +192,9 @@ function Home() {
         };
 
         try {
-          const response = await axios.post(
-            `${BACKEND_URL}/quiz/add-points`,
-            quizResult
-          );
-          updatePoints(response.data.quiz.points);
+          await axios.post(`${BACKEND_URL}/quiz/add-points`, quizResult);
+          updatePoints(quizResult.points);
+          setToast(true);
         } catch (error) {
           console.log(error);
         }
@@ -226,6 +225,33 @@ function Home() {
     <>
       <Navigator />
 
+      {/* Toast */}
+      {toast && (
+        <div className="position-fixed bottom-0 end-0 p-3">
+          <div
+            id="liveToast"
+            className="toast show text-danger"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            <div className="toast-header">
+              <strong className="me-auto">QuizTwist</strong>
+              <small>Now</small>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="toast"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="toast-body">
+              DATABASE IS CURRENTLY DOWN FOR MAINTENANCE.
+            </div>
+          </div>
+        </div>
+      )}
+
       <header>
         {/* START */}
         {status === "ready" && (
@@ -251,7 +277,6 @@ function Home() {
         {/* finish */}
         {status === "finished" && <QuizFinish quizInfo={quizInfo} />}
       </header>
-
       <FloatingIcon />
     </>
   );

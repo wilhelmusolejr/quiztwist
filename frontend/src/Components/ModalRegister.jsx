@@ -7,7 +7,8 @@ import Modal from "./Modal";
 // components
 import LabelInput from "./LabelInput";
 
-const BACKEND_URL = `http://localhost:3000/api`;
+const BACKEND_URL = `https://quiztwist-backend.vercel.app/api`;
+// const BACKEND_URL = `http://localhost:3000/api`;
 
 export default function ModalRegister() {
   const [firstName, setFirstName] = useState("");
