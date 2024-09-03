@@ -13,6 +13,7 @@ import CategoryContainer from "../Components/CategoryContainer";
 
 // styles
 import styles from "./Home.module.css";
+import FloatingIcon from "../Components/FloatingIcon";
 
 export default function Home() {
   return (
@@ -30,7 +31,7 @@ export default function Home() {
           </div>
 
           {/* rigt */}
-          <div className="d-flex flex-wrap  justify-content-center align-items-center">
+          <div className="d-flex flex-wrap  justify-content-center align-items-center ">
             <CategoryContainer
               icon={faFlask}
               title="General"
@@ -54,6 +55,8 @@ export default function Home() {
           </div>
         </Section>
       </header>
+
+      <FloatingIcon />
     </>
   );
 }

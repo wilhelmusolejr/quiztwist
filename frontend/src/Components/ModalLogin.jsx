@@ -35,6 +35,7 @@ export default function ModalLogin() {
 
       if (response.data.success) {
         login(response.data.user, response.data.token);
+        window.location.reload();
       } else {
         setError("Login failed. Please try again.");
       }
@@ -46,6 +47,8 @@ export default function ModalLogin() {
       } else {
         setError("An unexpected error occurred.");
       }
+    } finally {
+      setPassword("");
     }
   }
 

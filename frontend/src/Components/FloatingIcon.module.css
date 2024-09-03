@@ -1,0 +1,31 @@
+.svg {
+  color: var(--clr-main);
+  position: fixed;
+  z-index: -1;
+}
+
+.trophy {
+  font-size: 100vw;
+  transform: rotate(-30deg);
+  bottom: 5%;
+  right: -10%;
+}
+
+.award {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .trophy {
+    font-size: 65vh;
+    right: 0;
+  }
+
+  .award {
+    display: initial;
+    font-size: 15vh;
+    transform: rotate(20deg);
+    bottom: 5%;
+    left: 20%;
+  }
+}

@@ -54,6 +54,7 @@ export default function ModalRegister() {
 
       if (response.data.success) {
         login(response.data.user, response.data.token);
+        window.location.reload();
       } else {
         setError("Registration failed. Please try again.");
       }

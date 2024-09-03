@@ -17,6 +17,7 @@ import Navigator from "../Components/Navigator";
 import QuizFinish from "../Components/QuizFinish";
 import QuizProgress from "../Components/QuizProgress";
 import QuizReady from "../Components/QuizReady";
+import FloatingIcon from "../Components/FloatingIcon";
 
 const BACKEND_URL = `http://localhost:3000/api`;
 
@@ -250,6 +251,8 @@ function Home() {
         {/* finish */}
         {status === "finished" && <QuizFinish quizInfo={quizInfo} />}
       </header>
+
+      <FloatingIcon />
     </>
   );
 }

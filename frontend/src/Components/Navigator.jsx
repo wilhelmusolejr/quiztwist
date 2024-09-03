@@ -15,6 +15,8 @@ const Navigator = React.memo(function Navigator() {
     document
       .querySelector(`.${styles["nav-link-parent"]}`)
       .classList.toggle(`${styles["show"]}`);
+
+    document.querySelector("nav ul").style.zIndex = "1";
   };
 
   return (
@@ -27,7 +29,7 @@ const Navigator = React.memo(function Navigator() {
 
           {/* Dropdown menu */}
           <ul
-            className={`d-flex list-unstyled gap-2 ${styles["nav-link-parent"]} `}
+            className={`d-flex list-unstyled gap-2 ${styles["nav-link-parent"]} z=100`}
           >
             <li className="d-none">
               <a href="#home">Categories</a>

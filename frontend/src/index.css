@@ -102,6 +102,7 @@ svg {
 /* HEADER */
 header {
   min-height: 70vh;
+  z-index: 1;
 }
 
 /* modal */
