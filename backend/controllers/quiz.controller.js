@@ -4,7 +4,10 @@ import { User } from "../models/user.model.js";
 export const addPoints = async (req, res) => {
   const { user, points, type } = req.body;
 
-  console.log(req.body);
+  return res.status(201).json({
+    success: true,
+    message: "Points added",
+  });
 
   try {
     // Create a new quiz entry
