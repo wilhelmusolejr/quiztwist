@@ -11,12 +11,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 // Use CORS middleware before defining routes
-app.use(
-  cors({
-    origin: "https://quiztwist-frontend.vercel.app", // Allow only this origin
-  })
-);
-
+app.use(cors());
 app.use(express.json()); // Allows us to parse JSON data in the body of the request
 
 app.get("/", (req, res) => {
