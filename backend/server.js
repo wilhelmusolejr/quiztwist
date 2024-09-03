@@ -13,11 +13,15 @@ const app = express();
 // Use CORS middleware before defining routes
 app.use(
   cors({
-    origin: "http://localhost:5173", // Allow only this origin
+    origin: "https://quiztwist-frontend.vercel.app", // Allow only this origin
   })
 );
 
 app.use(express.json()); // Allows us to parse JSON data in the body of the request
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
 // ROUTE
 app.use("/api/auth", authRoutes);
