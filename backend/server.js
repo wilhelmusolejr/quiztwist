@@ -12,9 +12,10 @@ const app = express();
 
 // Use CORS middleware before defining routes
 app.use(cors());
+app.options("*", cors()); // Allow preflight requests for all routes
 app.use(express.json()); // Allows us to parse JSON data in the body of the request
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Hello World");
 });
 
