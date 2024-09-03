@@ -8,13 +8,12 @@ import cors from "cors";
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
-
 const app = express();
 
 // Use CORS middleware before defining routes
 app.use(
   cors({
-    origin: "https://quiztwist-frontend.vercel.app", // Allow only this origin
+    origin: "http://localhost:5173", // Allow only this origin
   })
 );
 

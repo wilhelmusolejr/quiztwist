@@ -19,7 +19,7 @@ import QuizProgress from "../Components/QuizProgress";
 import QuizReady from "../Components/QuizReady";
 import FloatingIcon from "../Components/FloatingIcon";
 
-const BACKEND_URL = `https://quiztwist-backend.vercel.app/api`;
+const BACKEND_URL = `http://localhost:3000/api`;
 
 // variables
 const num_questions = 15;
