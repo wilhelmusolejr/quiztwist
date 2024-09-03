@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import styles from "./QuizFooter.module.css";
 
-let seconds = 5000;
+let seconds = 50000;
 
 function QuizFooter({ dispatch, quizInfo, user_answer, time_limit }) {
   const [timeLeft, setTimeLeft] = useState(time_limit);

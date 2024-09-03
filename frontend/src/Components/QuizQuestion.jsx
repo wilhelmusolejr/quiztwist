@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 
+import styles from "./QuizQuestion.module.css";
+
 function QuizQuestion({ question, dispatch, user_answer }) {
   let hasAnswered = user_answer != null;
 
@@ -16,7 +18,9 @@ function QuizQuestion({ question, dispatch, user_answer }) {
     <>
       <div className="quiz text-center py-5">
         {/* question */}
-        <h2 className="text-light">{question.question}</h2>
+        <h2 className={`${styles["question-name"]} text-light`}>
+          {question.question}
+        </h2>
 
         {/* options */}
         <div

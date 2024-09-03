@@ -69,6 +69,10 @@ a {
   border-radius: 10px;
 }
 
+.btn-option:hover {
+  background: rgba(94, 94, 94, 0.4);
+}
+
 .btn-primary {
   background-color: white !important;
   color: var(--clr-main) !important;

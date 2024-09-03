@@ -9,6 +9,20 @@
 
 .child .svg {
   font-size: 5vh;
+  transition: 0.3s;
+}
+
+.child:hover {
+  background: rgba(124, 117, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5px);
+  transition: 0.3s;
+}
+
+.child:hover .svg {
+  transition: 0.3s;
+  transform: scale(1.2);
+  transform: rotate(10deg);
 }
 
 .child:nth-child(1) .svg {
