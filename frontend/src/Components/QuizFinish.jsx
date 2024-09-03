@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Confetti from "react-confetti";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck, faSackDollar } from "@fortawesome/free-solid-svg-icons";
@@ -12,30 +13,37 @@ function QuizFinish({ quizInfo }) {
     100
   ).toFixed();
 
-  return (
-    <Section className={`${styles["finish-parent"]} position-center`}>
-      <div className="text-center">
-        <h2>Thanks for taking the quiz!</h2>
-        <h3 className="my-3">Well done!</h3>
-      </div>
-      <div className=" mt-5">
-        <div className="d-flex align-items-center gap-3 p-2 ">
-          <FontAwesomeIcon
-            icon={faCircleCheck}
-            className={`${styles["check-parent"]}`}
-          />
+  const width = window.innerWidth;
+  const height = window.innerHeight;
 
-          <p>
-            {quizInfo.correct_answers} out of {quizInfo.num_questions} questions
-            passed! ({percentage}%)
-          </p>
+  return (
+    <>
+      <Confetti width={width} height={height} recycle={false} />
+
+      <Section className={`${styles["finish-parent"]} position-center`}>
+        <div className="text-center">
+          <h2>Thanks for taking the quiz!</h2>
+          <h3 className="my-3">Well done!</h3>
         </div>
-        <div className="d-flex align-items-center gap-3 p-2 ">
-          <FontAwesomeIcon icon={faSackDollar} className={`icon-coin`} />
-          <p>{quizInfo.current_points} points earned!</p>
+        <div className=" mt-5">
+          <div className="d-flex align-items-center gap-3 p-2 ">
+            <FontAwesomeIcon
+              icon={faCircleCheck}
+              className={`${styles["check-parent"]}`}
+            />
+
+            <p>
+              {quizInfo.correct_answers} out of {quizInfo.num_questions}{" "}
+              questions passed! ({percentage}%)
+            </p>
+          </div>
+          <div className="d-flex align-items-center gap-3 p-2 ">
+            <FontAwesomeIcon icon={faSackDollar} className={`icon-coin`} />
+            <p>{quizInfo.current_points} points earned!</p>
+          </div>
         </div>
-      </div>
-    </Section>
+      </Section>
+    </>
   );
 }
 

@@ -92,7 +92,7 @@ a {
 body {
   color: var(--clr-light-white);
   font-family: "Poppins", sans-serif;
-  background: radial-gradient(#312d94, #252260);
+  background: radial-gradient(#312d94, #1b1947);
   min-height: 80vh;
 }
 
@@ -111,5 +111,7 @@ header {
 .modal {
   color: var(--clr-black);
 }
-
+.modal-content {
+  background: #f4f4f4;
+}
 /* ----------------------- */

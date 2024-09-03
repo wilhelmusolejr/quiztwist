@@ -9,6 +9,7 @@ import {
   faMap,
   faRocket,
 } from "@fortawesome/free-solid-svg-icons";
+
 import CategoryContainer from "../Components/CategoryContainer";
 
 // styles
@@ -16,6 +17,8 @@ import styles from "./Home.module.css";
 import FloatingIcon from "../Components/FloatingIcon";
 
 export default function Home() {
+  document.title = "QuizTwist | Home";
+
   return (
     <>
       <Navigator />
