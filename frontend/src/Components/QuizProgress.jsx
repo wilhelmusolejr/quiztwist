@@ -6,6 +6,7 @@ import QuizQuestion from "./QuizQuestion";
 import Section from "./Section";
 
 import styles from "./QuizProgress.module.css";
+import { useEffect } from "react";
 
 function QuizProgress({
   quizInfo,
@@ -14,6 +15,19 @@ function QuizProgress({
   user_answer,
   time_limit,
 }) {
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ""; // Modern browsers show a generic message, this line is needed for it to work
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
   return (
     <Section className="question-parent">
       <div className={`container ${styles["question-container"]} p-3 rounded`}>
