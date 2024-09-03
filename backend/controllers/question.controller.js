@@ -20,8 +20,22 @@ export const getListQuestions = async (req, res) => {
 };
 
 export const questionJson = async (req, res) => {
+  const { number_question, category } = req.body;
+
   try {
-    return res.status(200).json({ success: true, questions: allQuestions });
+    const filteredQuestion = allQuestions.filter((question) => {
+      return question.category === category;
+    });
+
+    const shuffledQuestions = filteredQuestion.sort(() => 0.5 - Math.random());
+    const selectedQuestions = shuffledQuestions.slice(
+      0,
+      parseInt(number_question)
+    );
+
+    return res
+      .status(200)
+      .json({ success: true, questions: selectedQuestions });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }

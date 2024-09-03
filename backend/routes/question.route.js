@@ -6,7 +6,6 @@ import {
 
 const router = express.Router();
 
-router.post("/getListQuestions", getListQuestions);
-router.post("/test", questionJson);
+router.post("/getListQuestions", questionJson);
 
 export default router;
