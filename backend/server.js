@@ -14,7 +14,7 @@ const app = express();
 // Use CORS middleware
 app.use(
   cors({
-    origin: "http://localhost:5173", // Allow only this origin
+    origin: "https://quiztwist-frontend.vercel.app/", // Allow only this origin
   })
 );
 
