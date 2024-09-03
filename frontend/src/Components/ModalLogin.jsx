@@ -7,8 +7,8 @@ import LabelInput from "./LabelInput";
 const BACKEND_URL = `https://quiztwist-backend.vercel.app/api`;
 
 export default function ModalLogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("wilhelmus.olejr@gmail.com");
+  const [password, setPassword] = useState("carpediem");
   const [error, setError] = useState("");
   const { login } = useContext(AuthContext);
 
