@@ -21,7 +21,7 @@ app.use(
 app.use(express.json()); // Allows us to parse JSON data in the body of the request
 
 app.get("/api", (req, res) => {
-  res.send("Hello World");
+  res.status(200).json({ message: "API is running..." });
 });
 
 app.get("/api/question", async (req, res) => {
