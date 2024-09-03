@@ -1,8 +1,9 @@
 import express from "express";
-import { getListQuestions } from "../controllers/question.controller.js";
+import { getListQuestions, test } from "../controllers/question.controller.js";
 
 const router = express.Router();
 
 router.post("/getListQuestions", getListQuestions);
+router.post("/test", test);
 
 export default router;
