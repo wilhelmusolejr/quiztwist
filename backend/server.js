@@ -34,11 +34,9 @@ app.get("/api/question", async (req, res) => {
       0,
       parseInt(number_question)
     );
-    return res
-      .status(200)
-      .json({ success: true, questions: selectedQuestions });
+    res.status(200).json({ success: true, questions: selectedQuestions });
   } catch (error) {
-    return res.status(500).json({ success: false, message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
