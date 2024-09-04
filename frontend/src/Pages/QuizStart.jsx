@@ -253,6 +253,12 @@ function Home() {
       )}
 
       <header>
+        {status === "loading" && (
+          <div className="container text-center position-center">
+            <h1>LOADING...</h1>
+          </div>
+        )}
+
         {/* START */}
         {status === "ready" && (
           <QuizReady

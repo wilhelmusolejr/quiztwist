@@ -10,10 +10,13 @@ export default function ModalLogin() {
   const [email, setEmail] = useState("wilhelmus.olejr@gmail.com");
   const [password, setPassword] = useState("carpediem");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const { login } = useContext(AuthContext);
 
   async function loginFormSubmit(e) {
     e.preventDefault();
+
+    setLoading(true);
 
     // Trim whitespace from email and password
     const trimmedEmail = email.trim();
@@ -49,53 +52,58 @@ export default function ModalLogin() {
       }
     } finally {
       setPassword("");
+      setLoading(false);
     }
   }
 
   return (
     <Modal id={"loginModal"} modalTitle={"Login"}>
-      <form onSubmit={loginFormSubmit}>
-        {error && <div className="alert alert-danger">{error}</div>}
+      {loading ? (
+        <h1>LOADING...</h1>
+      ) : (
+        <form onSubmit={loginFormSubmit}>
+          {error && <div className="alert alert-danger">{error}</div>}
 
-        {/* Email */}
-        <div className="mb-3">
-          <LabelInput
-            id={"emailLogin"}
-            label={"Email address"}
-            value={email}
-            setValue={setEmail}
-          />
-        </div>
+          {/* Email */}
+          <div className="mb-3">
+            <LabelInput
+              id={"emailLogin"}
+              label={"Email address"}
+              value={email}
+              setValue={setEmail}
+            />
+          </div>
 
-        {/* Password */}
-        <div className="mb-3">
-          <LabelInput
-            id={"passwordLogin"}
-            type="password"
-            label={"Password"}
-            value={password}
-            setValue={setPassword}
-          />
-        </div>
+          {/* Password */}
+          <div className="mb-3">
+            <LabelInput
+              id={"passwordLogin"}
+              type="password"
+              label={"Password"}
+              value={password}
+              setValue={setPassword}
+            />
+          </div>
 
-        <button type="submit" className="btn btn-primary w-100 my-4">
-          Login
-        </button>
+          <button type="submit" className="btn btn-primary w-100 my-4">
+            Login
+          </button>
 
-        <hr />
+          <hr />
 
-        <div className="text-center d-flex justify-content-center gap-1">
-          <p>Not a member yet?</p>
-          <a
-            href="#"
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#registerModal"
-          >
-            Register
-          </a>
-        </div>
-      </form>
+          <div className="text-center d-flex justify-content-center gap-1">
+            <p>Not a member yet?</p>
+            <a
+              href="#"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#registerModal"
+            >
+              Register
+            </a>
+          </div>
+        </form>
+      )}
     </Modal>
   );
 }
